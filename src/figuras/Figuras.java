@@ -5,9 +5,15 @@
  */
 package figuras;
 
+import figuras.logica.Cuadrado;
+import figuras.logica.Figura;
+import figuras.logica.Punto;
+import figuras.logica.Rectangulo;
+import java.util.Scanner;
+
 /**
  *
- * @author judil
+ * @author Estudiantes
  */
 public class Figuras {
 
@@ -15,7 +21,47 @@ public class Figuras {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("Seleccione la figura: ");
+        System.out.println("1.  Cuadrado");
+        System.out.println("2.  Rectangulo");
+        Scanner sc = new Scanner(System.in);
+        int opc = sc.nextInt();
+        Figura f;
+        Punto origen = new Punto();
+        Punto fin = new Punto();
+        switch (opc) {
+            case 1:
+                f = new Cuadrado();
+                origen.setX(0);
+                origen.setY(0);
+
+                fin.setX(5);
+                fin.setY(0);
+
+                mostrar(f, origen, fin);
+                break;
+            case 2:
+                f = new Rectangulo();
+                origen.setX(0);
+                origen.setY(5);
+
+                fin.setX(10);
+                fin.setY(0);
+
+                mostrar(f, origen, fin);
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+
     }
-    
+
+    public static void mostrar(Figura f, Punto fin, Punto origen) {
+        f.setOrigen(origen);
+        f.setFin(fin);
+        f.calcularArea();
+        f.calcularPerimetro();
+        System.out.println("Area = " + f.getArea());
+        System.out.println("Perimetro  = " + f.getPerimetro());
+    }
 }
